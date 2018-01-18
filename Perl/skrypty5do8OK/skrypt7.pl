@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+#Bartłomiej Stąpór gr1
+$first=shift;
+$last=shift;
+$sep=shift;
+
+$first--;
+$last--;
+
+if($first > $last)
+{
+	($first, $last) = ($last, $first)
+
+}
+
+while(<>) 
+{
+	undef @words;
+	chomp;
+	@words = split(/[$sep]/, $_);
+	print join(" ", @words[$first..$last])." ";
+}
+print "\n";
+#uruchomienie ./skrypt7.pl 1 3 , test2.txt 
+

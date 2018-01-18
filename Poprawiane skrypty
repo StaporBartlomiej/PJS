@@ -1,0 +1,16 @@
+Poprawione skrypty:
+Tcshell:
+skrypt1OK\tschell.tcsh
+skrypt2OK\skrypt1.tcsh
+skrypty3i4\skrypt4.tcsh chyba nie do konca dziala
+
+
+Bash:
+skrypt2OK\skrypt2.sh
+skrypty3i4\skrypt4.sh chyba nie do konca dziala
+
+Perl:
+skrypt1/skrypt1.pl 
+skrypty5do8/skrypt5.pl
+skrypty5do8/skrypt8.pl
+skrypt10OK/skryp10.pl // zmieniona nazwa skryptu i pliku z funkcjami

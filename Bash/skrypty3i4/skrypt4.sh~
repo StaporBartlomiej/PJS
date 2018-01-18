@@ -1,0 +1,53 @@
+#!/bin/bash
+#Bartłomiej Stąpór
+function validation
+{
+	regex='^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])$'
+	if [[ "$1" =~ $regex ]] && [[ "$2" =~ $regex ]]; then
+  		echo "Ok"
+	else
+		echo "Zly adres ip"
+		exit 0
+	fi
+}
+Port=$3
+host1=$1
+host2=$2
+validation $host1 $host2
+echo $host1
+echo $host2
+array=()
+OLDIFS=$IFS
+IFS=','
+set -f
+for p in $Port; do
+	set +f
+	#echo "$p"
+	(echo  > /dev/tcp/$host1/$p) >& /dev/null
+   	if [ $? == 0 ];
+ 	then
+ 	{
+ 		echo "$p is open on ip $host1"
+ 		#exec 5<> /dev/tcp/$host1/$p
+		#cat <&5 &
+		echo `curl -s -D - "$host1" | grep "<title>"`
+ 	}
+ 	else
+ 		echo "$p is closed on ip $host1"
+	fi
+	
+	(echo  > /dev/tcp/$host2/$p) >& /dev/null
+   	if [ $? == 0 ];
+ 	then
+ 	{
+ 		echo "$p is open on ip $host2"
+ 		#exec 5<> /dev/tcp/$host2/$p
+		#cat <&5 &
+		echo `curl -s -D - "$host2"  | grep "<title>"`
+ 	}
+ 	else
+ 		echo "$p is closed on ip $host2"
+	fi
+done
+set +f
+IFS=$OLDIFS
