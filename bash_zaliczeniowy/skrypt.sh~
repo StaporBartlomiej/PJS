@@ -30,7 +30,7 @@ function find2
 							#echo "tablica jest pusta"
 							
 						#fi
-						printf "\033[1;32;40mFraza $3 znaleziona w:"
+					
 						grep -rn $3 ${tab[0]}
 						break
 						#for i in "${tab[@]}";
@@ -80,23 +80,23 @@ function display_help()
 {
 	red='\033[0;31m'
 	white='\033[1;37m'
-	printf "\033[1;37;40mSkrypt posiada nastepujace funkcjonalnosci:"
-        printf "\n1. Szuka frazy wystepujacej w plikach na 2 sposoby:"
-        printf "\n   a)Szuka wystapien frazy test w podanej sciezce uruchamiajac skrypt "
-        printf "w ponizszy sposob:"
-	printf "\033[1;31;40m\n     ./main.py -dir sciezka1 fraza np."
-        printf "\n     ./main.py -dir /home/bartek/Documents test"
-	printf "\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:"
-	printf "\033[1;31;40m\n       ./main.py -c test"
-	printf "\033[1;37;40m\n2)Szuka pliku o nazwie pelna_nazwa_pliku i podaje jego sciezke:"
-	printf "\033[1;31;40m\n    ./main.py --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku"
-	printf "\033[1;37;40m\n3)Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna)"
-	printf "\033[1;31;40m\n    ./main.py --encrypt/-e /home/bartek/Documents/file.txt"
-	printf "\033[1;37;40m\n4)Odszyfrowywuje zaszyfrowany wczesniej plik:"
-	printf "\033[1;31;40m\n    ./main.py --decrypt/-d zaszyfrowany_plik "
-	printf "\033[1;37;40m\n5)Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu:"
-	printf "\033[1;31;40m\n   ./main.py --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku"
-	printf "\033[1;37;40m "
+	printf "\033[1;37;40mSkrypt posiada nastepujace funkcjonalnosci:\n"
+        printf "\n1. Szuka frazy wystepujacej w plikach na 2 sposoby:\n"
+        printf "\n   a)Szuka wystapien frazy test w podanej sciezce uruchamiajac skrypt \n"
+        printf "w ponizszy sposob:\n"
+	printf "\033[1;31;40m\n     ./main.py -dir sciezka1 fraza np.\n"
+        printf "\n     ./main.py -dir /home/bartek/Documents test\n"
+	printf "\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:\n"
+	printf "\033[1;31;40m\n       ./main.py -c test\n"
+	printf "\033[1;37;40m\n2)Szuka pliku o nazwie pelna_nazwa_pliku i podaje jego sciezke:\n"
+	printf "\033[1;31;40m\n    ./main.py --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku\n"
+	printf "\033[1;37;40m\n3)Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna)\n"
+	printf "\033[1;31;40m\n    ./main.py --encrypt/-e /home/bartek/Documents/file.txt\n"
+	printf "\033[1;37;40m\n4)Odszyfrowywuje zaszyfrowany wczesniej plik:\n"
+	printf "\033[1;31;40m\n    ./main.py --decrypt/-d zaszyfrowany_plik \n"
+	printf "\033[1;37;40m\n5)Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu:\n"
+	printf "\033[1;31;40m\n   ./main.py --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku\n"
+	printf "\033[1;37;40m \n"
 	
 }
 function init()
