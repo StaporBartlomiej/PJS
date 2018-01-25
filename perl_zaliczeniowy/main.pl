@@ -81,25 +81,104 @@ sub init
 	if( ( $ARGV[0] eq "-h" ) || ($ARGV[0] eq "--help"))
 	{
 		display_help();
+		exit(0);
 	}
 	
-	if ( ( $ARGV[0] eq "-dir" ) && ($argv_len == 3) )
+	if ( ( $ARGV[0] eq "-dir" ) )
 	{
+	
+		if($argv_len == 3) 
+		{
+			find2($ARGV[0], $ARGV[1], $ARGV[2]); 
+			exit(0);
+		}
+		else
+		{
+			print ("Bledne argumenty");
+			exit(0);
+		}
 		
 	}
+	if (  ($ARGV[0] eq "-f") || ($ARGV[0] eq "--file") )
+	{
+		if ( $argv_len == 3 )
+		{
+			findAFile($ARGV[1], $ARGV[2]);
+			exit(0);
+		}
+		else
+		{
+			print ("Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			exit(0);
+		}
+	}
+	if ( ($ARGV[0] eq "-e") || ($ARGV[0] eq "--encrypt") )
+	{
+		if ($argv_len == 2)
+		{
+			encrypt($ARGV[1]);
+			exit(0);
+		}
+		else
+		{
+			print ("Opcja -e/--encrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			exit(0);
+		}
+	}
+	
+	if ( ($ARGV[0] eq "-d") || ($ARGV[0] eq "--decrypt") )
+	{
+		if ($argv_len == 2)
+		{
+			decrypt($ARGV[1]);
+			exit(0);
+		}
+		else
+		{
+			print ("Opcja -d/--decrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			exit(0);
+		}
+	}
+	
+	if ( ($ARGV[0] eq "-r") || ($ARGV[0] eq "--replace") )
+	{
+		if ($argv_len == 2)
+		{
+			replace($ARGV[1], $ARGV[2], $ARGV[3]);
+			exit(0);
+		}
+		else
+		{
+			print ("Opcja -r/--replace wymaga 4 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			exit(0);
+		}
+	}
+	
+	if ($ARGV[0] eq "-c") 
+	{
+		if ($argv_len == 2)
+		{
+			find_in_current_directory($ARGV[0], $ARGV[1]);
+			exit(0);
+		}
+		else
+		{
+			print ("Opcja -r/--replace wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			exit(0);
+		}
+	}
+	
 }
 
 #print ("$xD");
-#find2($ARGV[0], $ARGV[1], $ARGV[2]); 
 
-#find_in_current_directory($ARGV[0], $ARGV[1]);
-#replace($ARGV[0], $ARGV[1], $ARGV[2]);
-#findAFile($ARGV[0], $ARGV[1]);
-#encrypt($ARGV[0]);
+
+#
+#
+
+#
 #decrypt($ARGV[0]);
 
-print ($xD);
-print("\n");
 init(@ARGV);
 
 
