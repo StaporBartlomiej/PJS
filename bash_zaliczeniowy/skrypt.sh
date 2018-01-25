@@ -78,8 +78,6 @@ function decrypt()
 }
 function display_help()
 {
-	red='\033[0;31m'
-	white='\033[1;37m'
 	printf "\033[1;37;40mSkrypt posiada nastepujace funkcjonalnosci:\n"
         printf "\n1. Szuka frazy wystepujacej w plikach na 2 sposoby:\n"
         printf "\n   a)Szuka wystapien frazy test w podanej sciezce uruchamiajac skrypt \n"
