@@ -179,8 +179,6 @@ sub init
 #
 #decrypt($ARGV[0]);
 
-print ($xD);
-print("\n");
 init(@ARGV);
 
 

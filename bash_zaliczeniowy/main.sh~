@@ -20,6 +20,7 @@ function find2
 					then
 					#echo xD2
 						tab+=$arg
+						echo xD
 						#echo "powiekszam tab o $arg"
 				fi
 				if [[ $3 != "-dir" ]] && [[ $3 != '/'* ]];
@@ -30,8 +31,8 @@ function find2
 							#echo "tablica jest pusta"
 							
 						#fi
-					
-						grep -rn $3 ${tab[0]}
+						echo "grep -rn $3 ${tab[0]}"
+						grep -rn $3 $2
 						break
 						#for i in "${tab[@]}";
 						#do
@@ -82,18 +83,18 @@ function display_help()
         printf "\n1. Szuka frazy wystepujacej w plikach na 2 sposoby:\n"
         printf "\n   a)Szuka wystapien frazy test w podanej sciezce uruchamiajac skrypt \n"
         printf "w ponizszy sposob:\n"
-	printf "\033[1;31;40m\n     ./main.py -dir sciezka1 fraza np.\n"
+	printf "\033[1;31;40m\n     ./main.sh -dir sciezka1 fraza np.\n"
         printf "\n     ./main.py -dir /home/bartek/Documents test\n"
 	printf "\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:\n"
-	printf "\033[1;31;40m\n       ./main.py -c test\n"
+	printf "\033[1;31;40m\n       ./main.sh -c test\n"
 	printf "\033[1;37;40m\n2. Szuka pliku o nazwie pelna_nazwa_pliku i podaje jego sciezke:\n"
-	printf "\033[1;31;40m\n    ./main.py --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku\n"
+	printf "\033[1;31;40m\n    ./main.sh --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku\n"
 	printf "\033[1;37;40m\n3. Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna)\n"
-	printf "\033[1;31;40m\n    ./main.py --encrypt/-e /home/bartek/Documents/file.txt\n"
+	printf "\033[1;31;40m\n    ./main.sh --encrypt/-e /home/bartek/Documents/file.txt\n"
 	printf "\033[1;37;40m\n4. Odszyfrowywuje zaszyfrowany wczesniej plik:\n"
-	printf "\033[1;31;40m\n    ./main.py --decrypt/-d zaszyfrowany_plik \n"
+	printf "\033[1;31;40m\n    ./main.sh --decrypt/-d zaszyfrowany_plik \n"
 	printf "\033[1;37;40m\n5. Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu:\n"
-	printf "\033[1;31;40m\n   ./main.py --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku\n"
+	printf "\033[1;31;40m\n   ./main.sh --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku\n"
 	printf "\033[1;37;40m \n"
 	
 }
@@ -150,48 +151,48 @@ function init()
 	
 	if [[ $1 = "-e" ]];
 	then
-		if [[ "$#" = 3 ]];
+		if [[ "$#" = 2 ]];
 		then
 			encrypt $3
 			exit
 		else
-			echo "Opcja -e/--encrypt wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
+			echo "Opcja -e/--encrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
 			exit
 		fi
 	fi
 	
 	if [[ $1 = "--encrypt" ]];
 	then
-		if [[ "$#" = 3 ]];
+		if [[ "$#" = 2 ]];
 		then
 			encrypt $3
 			exit
 		else
-			echo "Opcja -e/--encrypt wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
+			echo "Opcja -e/--encrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
 			exit
 		fi
 	fi
 	
 	if [[ $1 = "-d" ]];
 	then
-		if [[ "$#" = 3 ]];
+		if [[ "$#" = 2 ]];
 		then
 			decrypt $3
 			exit
 		else
-			echo "Opcja -d/--decrypt wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
+			echo "Opcja -d/--decrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
 			exit
 		fi
 	fi
 	
 	if [[ $1 = "--decrypt" ]];
 	then
-		if [[ "$#" = 3 ]];
+		if [[ "$#" = 2 ]];
 		then
 			decrypt $3
 			exit
 		else
-			echo "Opcja -d/--decrypt wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
+			echo "Opcja -d/--decrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
 			exit
 		fi
 	fi
