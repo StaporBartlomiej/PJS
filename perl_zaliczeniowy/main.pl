@@ -54,23 +54,22 @@ sub decrypt
 }
 sub display_help
 {
-	print("\033[1;37;40mSkrypt posiada nastepujace funkcjonalnosci:");
-	print("\n1. Szuka frazy wystepujacej w plikach na 2 sposoby:");
-	print("\n   a)Szuka wystapien frazy test w podanej sciezce uruchamiajac skrypt ");
-	print("w ponizszy sposob:");
-	print("\033[1;31;40m\n     ./main.pl -dir sciezka1 fraza np.");
-	print("\n     ./main.pl -dir /home/bartek/Documents test");
-	print("\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:");
-	print("\033[1;31;40m\n       ./main.pl -c test");
-	print("\033[1;37;40m\n2. Szuka pliku o nazwie pelna_nazwa_pliku i podaje jego sciezke:");
-	print("\033[1;31;40m\n    ./main.pl --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku");
-	print("\033[1;37;40m\n3. Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna)");
-	print("\033[1;31;40m\n    ./main.pl --encrypt/-e /home/bartek/Documents/file.txt");
-	print("\033[1;37;40m\n4. Odszyfrowywuje zaszyfrowany wczesniej plik:");
-	print("\033[1;31;40m\n    ./main.pl --decrypt/-d zaszyfrowany_plik ");
-	print("\033[1;37;40m\n5. Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu:");
-	print("\033[1;31;40m\n   ./main.pl --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku");
-	print("\033[1;37;40m ");
+	print("\033[1;37;40mSkrypt posiada nastepujace funkcjonalnosci:\n");
+	print("\n1. Szuka frazy wystepujacej w plikach na 2 sposoby:\n");
+	print("\n   a)Szuka wystapien frazy test w podanej sciezce uruchamiajac skrypt w ponizszy sposob: \n");
+	print("\033[1;31;40m\n     ./main.pl -dir sciezka1 fraza np.\n");
+	print("\n     ./main.pl -dir /home/bartek/Documents test\n");
+	print("\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:\n");
+	print("\033[1;31;40m\n       ./main.pl -c test\n");
+	print("\033[1;37;40m\n2. Szuka pliku o nazwie pelna_nazwa_pliku i podaje jego sciezke:\n");
+	print("\033[1;31;40m\n    ./main.pl --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku\n");
+	print("\033[1;37;40m\n3. Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna)\n");
+	print("\033[1;31;40m\n    ./main.pl --encrypt/-e /home/bartek/Documents/file.txt\n");
+	print("\033[1;37;40m\n4. Odszyfrowywuje zaszyfrowany wczesniej plik:\n");
+	print("\033[1;31;40m\n    ./main.pl --decrypt/-d zaszyfrowany_plik \n");
+	print("\033[1;37;40m\n5. Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu:\n");
+	print("\033[1;31;40m\n   ./main.pl --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku\n");
+	print("\033[1;37;40m \n");
 	
 }
 
@@ -94,7 +93,7 @@ sub init
 		}
 		else
 		{
-			print ("Bledne argumenty");
+			print ("Bledne argumenty\n");
 			exit(0);
 		}
 		
@@ -108,7 +107,7 @@ sub init
 		}
 		else
 		{
-			print ("Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			print ("Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow.\n");
 			exit(0);
 		}
 	}
@@ -121,7 +120,7 @@ sub init
 		}
 		else
 		{
-			print ("Opcja -e/--encrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			print ("Opcja -e/--encrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.\n");
 			exit(0);
 		}
 	}
@@ -135,21 +134,21 @@ sub init
 		}
 		else
 		{
-			print ("Opcja -d/--decrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			print ("Opcja -d/--decrypt wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.\n");
 			exit(0);
 		}
 	}
 	
 	if ( ($ARGV[0] eq "-r") || ($ARGV[0] eq "--replace") )
 	{
-		if ($argv_len == 2)
+		if ($argv_len == 4)
 		{
 			replace($ARGV[1], $ARGV[2], $ARGV[3]);
 			exit(0);
 		}
 		else
 		{
-			print ("Opcja -r/--replace wymaga 4 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			print ("Opcja -r/--replace wymaga 4 argumentow. Podana zostala nieprawidlowa ilosc argumentow.\n");
 			exit(0);
 		}
 	}
@@ -163,7 +162,7 @@ sub init
 		}
 		else
 		{
-			print ("Opcja -r/--replace wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.");
+			print ("Opcja -r/--replace wymaga 2 argumentow. Podana zostala nieprawidlowa ilosc argumentow.\n");
 			exit(0);
 		}
 	}
