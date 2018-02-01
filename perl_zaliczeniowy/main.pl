@@ -29,13 +29,21 @@ sub replace
 	system($result);
 }
 
-sub findAFile
+%sub findAFile
+%{
+%	my ($path, $file_name) = @_;
+%	chomp($path);
+%	chomp($file_name);
+%	my $result = "find $path -name $file_name";
+%	system($result);
+%}
+
+sub file_statistics
 {
-	my ($path, $file_name) = @_;
-	chomp($path);
-	chomp($file_name);
-	my $result = "find $path -name $file_name";
-	system($result);
+    my ($file) = @_;
+    chomp($file);
+    my $result = "tr -c '[:alnum:]' '[\n*]' < $1 | sort | uniq -c | sort -nr | head  -10"
+    system($result)
 }
 
 sub encrypt
@@ -61,13 +69,16 @@ sub display_help
 	print("\n     ./main.pl -dir /home/bartek/Documents test\n");
 	print("\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:\n");
 	print("\033[1;31;40m\n       ./main.pl -c test\n");
-	print("\033[1;37;40m\n2. Szuka pliku o nazwie pelna_nazwa_pliku i podaje jego sciezke:\n");
-	print("\033[1;31;40m\n    ./main.pl --file/-f sciezka_katalogu_w_ktorym_ma_szukac pelna_nazwa_pliku\n");
-	print("\033[1;37;40m\n3. Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna)\n");
+	print("\033[1;37;40m\n2. Wyswietla statystyki danego pliku. W statystykach pokazuje najczesciej wystepujace slowa uszeregowane malejaco w stosunku do ilosci wystapien. \n");
+	print("\033p1;37;40m W przypadku gdy plik znajduje się w tym samym katalogu co skrypt wystarczy podac sama nazwe pliku. Jesli skrypt znajduje sie w innym katalogu niz plik to nalezy podac sciezke absolutna.");
+	print("\033p1;37;40m Skrypt w 1 lini wyswietla liczbe nadmiarowych bialych znakow(np. podwojna spacja, pusta linia). W kolejnych sa najczesciej wystepujace wyrazy wraz z licznikiem wystapien:");
+	print("\033[1;31;40m\n    ./main.pl -s pelna_nazwa_pliku\n\n");
+	print("\033[1;37;40m\n3. Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna) stosujac 'gpg' czyli OpenPGP encryption and signing tool. Plik, ktory jest szyfrowany domyslnie zostaje jednak mozna go usunac po zaszyfrowaniu stosujac opcje -er:\n");
 	print("\033[1;31;40m\n    ./main.pl --encrypt/-e /home/bartek/Documents/file.txt\n");
+	print("\033[1;31;40m\n    ./main.pl -er /home/bartek/Documents/file.txt\n");
 	print("\033[1;37;40m\n4. Odszyfrowywuje zaszyfrowany wczesniej plik:\n");
 	print("\033[1;31;40m\n    ./main.pl --decrypt/-d zaszyfrowany_plik \n");
-	print("\033[1;37;40m\n5. Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu:\n");
+	print("\033[1;37;40m\n5. Zastepuje slowo podane w wywolaniu skryptu na inne slowo takze podane przy wywolywaniu skryptu. Skrypt zastepuje wszystkie slowa oraz czesci slow pasujace do patternu:\n");
 	print("\033[1;31;40m\n   ./main.pl --replace/-r slowo_ktore_ma_byc_zastapione nowe_slowo sciezka_do_pliku\n");
 	print("\033[1;37;40m \n");
 	
