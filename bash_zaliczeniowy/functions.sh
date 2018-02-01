@@ -74,16 +74,16 @@ function replace()
 
 function encrypt()
 {
-echo $1
+#echo $1
     if [[ $1 = "-er" ]];
 	then
-	    echo xD
+#	    echo xD
 	    gpg -c $2
 	    wait
 	    rm $2
 
 	else
-	    echo xD2
+#	    echo xD2
 	    gpg -c $2
 	fi
 

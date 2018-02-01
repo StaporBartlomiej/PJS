@@ -27,29 +27,29 @@ function init()
 		exit
 	fi
 	
-	if [[ $1 = "-f" ]];
-	then
-		if [[ "$#" = 3 ]];
-		then
-			findAFile $2 $3
-			exit
-		else
-			echo "Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
-			exit
-		fi
-	fi
+#	if [[ $1 = "-f" ]];
+#	then
+#		if [[ "$#" = 3 ]];
+#		then
+#			findAFile $2 $3
+#			exit
+#		else
+#			echo "Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
+#			exit
+#		fi
+#	fi
 	
-	if [[ $1 = "--file" ]];
-	then
-		if [[ "$#" = 3 ]];
-		then
-			findAFile $2 $3
-			exit
-		else
-			echo "Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
-			exit
-		fi
-	fi
+#	if [[ $1 = "--file" ]];
+#	then
+#		if [[ "$#" = 3 ]];
+#		then
+#			findAFile $2 $3
+#			exit
+#		else
+#			echo "Opcja -f/--file wymaga 3 argumentow. Podana zostala nieprawidlowa ilosc argumentow."
+#			exit
+#		fi
+#	fi
 	
 	if [[ $1 = "-e" ]] || [[ $1 = "-er" ]];
 	then
