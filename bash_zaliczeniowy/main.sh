@@ -1,5 +1,7 @@
 #!/bin/bash
-source ./functions.sh
+path="$(find /home/ -name "myFunctions.sh")"
+source ${path}
+#source ./functions.sh
 function init()
 {
 	if [[ $1 = "-h" ]];
@@ -20,7 +22,7 @@ function init()
 		fi
 		
 	fi
-	
+
 	if [[ $1 = "--help" ]];
 	then
 		display_help	

@@ -1,8 +1,33 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use Module::Load;
 
-use functions;
+#print("XD");
+my $dir;
+BEGIN
+{
+    my $path = `find /home/ -name myFunctions.pm`;
+    #print ($path);
+    $dir = `dirname $path`;
+    #print ($dir);
+    my $script = $path;
+    #load $script;
+    #print($script);
+
+
+    chomp($dir);
+    #print("script: $dir");
+}
+
+use lib $dir;
+#use lib '/home/bartek/Documents';
+use myFunctions;
+#use myFunctions;
+
+
+
+#use myFunctions;
 
 sub init
 {
@@ -112,4 +137,4 @@ sub init
 
 init(@ARGV);
 
-
+1;
