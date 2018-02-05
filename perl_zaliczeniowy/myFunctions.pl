@@ -1,12 +1,13 @@
 #!/usr/bin/perl
-package myFunctions;
-
-
-require Exporter;
-@ISA = qw(Exporter);
-@EXPORT = qw(find2 find_in_current_directory replace file_statistics encrypt decrypt display_help);
+#package myFunctions;
 use strict;
 use warnings;
+
+
+#require Exporter;
+#our @ISA = qw(Exporter);
+#our @EXPORT = qw(find2 find_in_current_directory replace file_statistics encrypt decrypt display_help);
+
 
 
 

@@ -1,5 +1,16 @@
 #!/bin/bash
-path="$(find /home/ -name "myFunctions.sh")"
+#path="$(find /home/ -name "myFunctions.sh")"
+#path="$(basename $0)"
+#"$(ls -1)"
+#basename $0
+#source ${path}
+#echo $0
+#basename="$(basename $0)"
+dirname="$(dirname $0)"
+path="$dirname/myFunctions.sh"
+echo $path
+#echo $path
+#path="$(basename $0)"
 source ${path}
 #source ./functions.sh
 function init()

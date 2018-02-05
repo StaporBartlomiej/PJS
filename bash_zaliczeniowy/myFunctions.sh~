@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #BartlomiejStaporfunkcje
-basename $0
-#require "./myFunctions.pl";
+echo `basename $0`
+
 function find2
 {
 	BASH_ARGV=$@
@@ -121,4 +121,3 @@ function display_help()
 	printf "\033[1;37;40m \n"
 
 }
-1;

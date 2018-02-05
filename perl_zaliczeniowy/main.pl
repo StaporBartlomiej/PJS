@@ -1,28 +1,31 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Module::Load;
+#
+
+use File::Basename;
+
+my $FILE = $0;
+print ($0);
+my $DIR = dirname($FILE);
+require "./myFunctions.pl";
+#print ("xD");
+#print $DIR, "\n";
+
+
+
+
+
+
+
 
 #print("XD");
-my $dir;
-BEGIN
-{
-    my $path = `find /home/ -name myFunctions.pm`;
-    #print ($path);
-    $dir = `dirname $path`;
-    #print ($dir);
-    my $script = $path;
-    #load $script;
-    #print($script);
+#my $dir = `dirname $0`;
+#print($dir . '/myFunctions.pm');
+#use lib "$dir/myFunctions.pl";
 
-
-    chomp($dir);
-    #print("script: $dir");
-}
-
-use lib $dir;
 #use lib '/home/bartek/Documents';
-use myFunctions;
+#use myFunctions;
 #use myFunctions;
 
 
