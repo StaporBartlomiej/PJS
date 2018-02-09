@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #BartlomiejStaporfunkcje
-basename $0
+#basename $0
 #require "./myFunctions.pl";
 function find2
 {
@@ -34,7 +34,7 @@ function find2
 							#echo "tablica jest pusta"
 
 						#fi
-						echo "grep -rn $3 ${tab[0]}"
+#						echo "grep -rn $3 ${tab[0]}"
 						grep -rn $3 $2
 						break
 						#for i in "${tab[@]}";
@@ -76,15 +76,25 @@ function replace()
 
 function encrypt()
 {
-#echo $1
+    test=$(command -v gpg)
+    echo $test
+    if command -v gpg >/dev/null; then
+          echo "gpg Installed"
+    else
+        echo "Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania."
+        exit
+    fi
     if [[ $1 = "-er" ]];
 	then
-#	    echo xD
-	    gpg -c $2
+        gpg -c $2
 	    wait
 	    rm $2
 
+#	    echo xD
+
+
 	else
+
 #	    echo xD2
 	    gpg -c $2
 	fi
@@ -93,9 +103,17 @@ function encrypt()
 
 function decrypt()
 {
-	echo $#
+#	echo $#
+    if command -v gpg >/dev/null; then
+            echo "gpg Installed"
+            name=$(echo $1 | cut -f 1 -d '.')
+            echo "-d $1 --output $name"
+            gpg -d --output $name $1
+        else
+            echo "Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania."
+            exit
+        fi
 
-	gpg $1
 }
 function display_help()
 {
@@ -121,4 +139,3 @@ function display_help()
 	printf "\033[1;37;40m \n"
 
 }
-1;

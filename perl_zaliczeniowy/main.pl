@@ -1,32 +1,32 @@
-#!/usr/bin/perl
+#! /home/bartek/localperl/bin/perl5.26.1
+
+#package myFunctions;
+#use File::Basename;
+#my $FILE = $0;
+#my $DIR = dirname($FILE);
+#print("/$DIR/myFunctions.pm");
+#push(@INC, '/$DIR/myFunctions.pm');
+
+
 use strict;
 use warnings;
-#
-
-use File::Basename;
-
-my $FILE = $0;
-print ($0);
-my $DIR = dirname($FILE);
-require "./myFunctions.pl";
-#print ("xD");
-#print $DIR, "\n";
+BEGIN {
+    use FindBin '$Bin';
+    push @INC, $Bin;
+    }
+#use File::Basename qw(dirname);
+#use Cwd  qw(abs_path);
+#use lib dirname(dirname abs_path $0) . '/lib';
 
 
 
 
 
+#require "./myFunctions.pl";
 
 
+use myFunctions;
 
-#print("XD");
-#my $dir = `dirname $0`;
-#print($dir . '/myFunctions.pm');
-#use lib "$dir/myFunctions.pl";
-
-#use lib '/home/bartek/Documents';
-#use myFunctions;
-#use myFunctions;
 
 
 
@@ -61,6 +61,7 @@ sub init
 	{
 		if ($argv_len == 2)
 		{
+
 			encrypt($ARGV[0],$ARGV[1]);
 			exit(0);
 		}

@@ -1,7 +1,16 @@
-#!/usr/bin/perl
-#package myFunctions;
+#! /home/bartek/localperl/bin/perl5.26.1
+package myFunctions;
 use strict;
 use warnings;
+BEGIN
+	{
+		require Exporter;
+		our @ISA = qw(Exporter);
+		our @EXPORT = qw(find2 find_in_current_directory replace file_statistics encrypt decrypt display_help);
+
+	}
+
+
 
 
 #require Exporter;
@@ -56,8 +65,24 @@ sub encrypt
 
 	chomp($file);
 	chomp($option);
-	print($option);
-    print($file);
+	#print($option);
+    #print($file);
+
+
+	my $condition = "which gpg >/dev/null";
+#	print($condition);
+	my $out = system($condition);
+#	print($out);
+	if ($out != 0)
+	{
+		print("Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania.");
+		exit(0);
+
+
+	}
+	else {
+		print("gpg Installed\n");
+	}
 
 	if ( $option eq "-er" )
 	{
@@ -78,7 +103,23 @@ sub decrypt
 {
 	my ($file) = @_;
 	chomp($file);
-	my $result = "gpg $file";
+	my $condition = "which gpg >/dev/null";
+	#	print($condition);
+	my $out = system($condition);
+	#	print($out);
+	if ($out != 0)
+	{
+		print("Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania.");
+		exit(0);
+
+
+	}
+	else {
+		print("gpg Installed\n");
+	}
+	my $string = substr($file, 0, -4);
+#	print($string);
+	my $result = "gpg -d --output $string $file";
 	system($result);
 }
 sub display_help

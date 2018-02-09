@@ -8,7 +8,7 @@
 #basename="$(basename $0)"
 dirname="$(dirname $0)"
 path="$dirname/myFunctions.sh"
-echo $path
+#echo $path
 #echo $path
 #path="$(basename $0)"
 source ${path}
