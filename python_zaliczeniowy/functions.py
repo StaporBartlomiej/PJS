@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # Bartlomiej Stapor gr 1
 import subprocess, sys, os
+from getpass import getpass
 
 
 
@@ -74,10 +75,13 @@ def encrypt(option, file):
     if(out != 0):
         print("Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania.")
         exit(0)
-    else:
-        print("gpg Installed")
+    # else:
+    #     print("gpg Installed")
     # print(out)
-    bashCommand = "gpg -c " + file
+    # print("Podaj Haslo")
+    password = getpass()
+
+    bashCommand = "gpg --no-batch --symmetric  --armor --passphrase " + password + " " + file
     # print("Command:" + bashCommand)
     # print("Starting bashcommand: " + bashCommand)
     if option == "-er":
@@ -96,15 +100,16 @@ def decrypt(file):
         print(
             "Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania.")
         exit(0)
-    else:
-        print("gpg Installed")
-    print("file:" + file[:-4])
-    bashCommand = "gpg -d --output "+file[:-4]+" " + file
+    # else:
+    #     print("gpg Installed")
+    # print("file:" + file[:-4])
+    password = getpass()
+    bashCommand = "gpg --no-batch --passphrase " + password + " --output " + file[:-4] + " --decrypt " + file
+    # bashCommand = "gpg -d --output "+file[:-4]+" " + file
     # print("Command:" + bashCommand)
     # print("Starting bashcommand: " + bashCommand)
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
-    print("\033[1;32;40mPlik " + file + " odkodowany!")
     # print(output)
 def display_help():
     print("\033[1;37;40mSkrypt posiada nastepujace funkcjonalnosci:\n")

@@ -77,16 +77,18 @@ function replace()
 function encrypt()
 {
     test=$(command -v gpg)
-    echo $test
-    if command -v gpg >/dev/null; then
-          echo "gpg Installed"
-    else
+#    echo $test
+    if ! command -v gpg >/dev/null; then
         echo "Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania."
         exit
     fi
     if [[ $1 = "-er" ]];
 	then
-        gpg -c $2
+	    echo "Password:"
+	    read -s pass
+	    wait
+	    gpg --no-batch --symmetric  --armor --passphrase $pass $2 &> /dev/null
+#        gpg -c $2
 	    wait
 	    rm $2
 
@@ -94,9 +96,12 @@ function encrypt()
 
 
 	else
-
+        echo "Password:"
+	    read -s pass
+	    wait
+	    gpg --no-batch --symmetric  --armor --passphrase $pass $2 &> /dev/null
 #	    echo xD2
-	    gpg -c $2
+#	    gpg -c $2
 	fi
 
 }
@@ -105,10 +110,14 @@ function decrypt()
 {
 #	echo $#
     if command -v gpg >/dev/null; then
-            echo "gpg Installed"
+#            echo "gpg Installed"
             name=$(echo $1 | cut -f 1 -d '.')
-            echo "-d $1 --output $name"
-            gpg -d --output $name $1
+            echo "Password::"
+            read -s pass
+            wait
+            gpg --no-batch --passphrase $pass --output $name --decrypt $1 &> /dev/null
+#            echo "-d $1 --output $name"
+#            gpg -d --output $name $1
         else
             echo "Skrypt do szyfrowania wymaga gpg a go nie znalazl. Prosze zainstalowac gpg aby uzyc funkcji szyfrowania/deszyfrowania."
             exit

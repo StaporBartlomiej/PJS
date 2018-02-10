@@ -1,4 +1,4 @@
-#! /home/bartek/localperl/bin/perl5.26.1
+#!/usr/bin/perl
 
 #package myFunctions;
 #use File::Basename;

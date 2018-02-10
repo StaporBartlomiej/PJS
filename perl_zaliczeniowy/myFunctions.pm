@@ -1,12 +1,19 @@
-#! /home/bartek/localperl/bin/perl5.26.1
+#!/usr/bin/perl
 package myFunctions;
 use strict;
 use warnings;
+my $rc;
 BEGIN
 	{
 		require Exporter;
 		our @ISA = qw(Exporter);
 		our @EXPORT = qw(find2 find_in_current_directory replace file_statistics encrypt decrypt display_help);
+		$rc = eval
+		{
+			require Term::ReadKey;
+			Term::ReadKey->import();
+			1;
+		};
 
 	}
 
@@ -80,21 +87,63 @@ sub encrypt
 
 
 	}
-	else {
-		print("gpg Installed\n");
-	}
+#	else {
+#		print("gpg Installed\n");
+#	}
 
 	if ( $option eq "-er" )
 	{
-	    my $result = "gpg -c $file";
-	    system($result);
-	    my $rm = "rm $file";
-	    system($rm);
+		if($rc)
+		{
+			print("Podaj haslo:\n");
+			ReadMode 'noecho';
+			my $password = ReadLine 0;
+			chomp $password;
+			ReadMode 'normal';
+#			print($password);
+			my $command = "gpg --no-batch --symmetric  --armor --passphrase $password $file";
+			system($command);
+#			exit(0);
+			my $rm = "rm $file";
+			system($rm);
+
+
+		}
+		else {
+			print("Do poprawnego działania skrypt wymaga modulu Term::ReadKey a go nie wykryl. Prosze o zainstalowanie modulu Term::ReadKey\nNa przyklad komenda: cpan Term::ReadKey
+\n");
+			exit(0);
+		}
+#		my $read = system("read -s pass");
+#		print($password);
+#	    my $result = "gpg -c $file";
+#	    system($result);
+#	    my $rm = "rm $file";m
+#	    system($rm);
 	}
 	else
 	{
-	    my $result = "gpg -c $file";
-        system($result);
+		if($rc)
+		{
+			print("Podaj haslo:\n");
+			ReadMode 'noecho';
+			my $password = ReadLine 0;
+			chomp $password;
+			ReadMode 'normal';
+			#			print($password);
+			my $command = "gpg --no-batch --symmetric  --armor --passphrase $password $file";
+			system($command);
+			#			exit(0);
+
+
+		}
+		else {
+			print("Do poprawnego działania skrypt wymaga modulu Term::ReadKey a go nie wykryl. Prosze o zainstalowanie modulu Term::ReadKey\nNa przyklad komenda: cpan Term::ReadKey
+\n");
+			exit(0);
+		}
+#	    my $result = "gpg -c $file";
+#        system($result);
 	}
 
 
@@ -114,13 +163,34 @@ sub decrypt
 
 
 	}
-	else {
-		print("gpg Installed\n");
+
+#	else {
+##		print("gpg Installed\n");
+#	}
+	if($rc)
+	{
+		print("Podaj haslo:\n");
+		ReadMode 'noecho';
+		my $password = ReadLine 0;
+		chomp $password;
+		ReadMode 'normal';
+		#			print($password);
+		my $name = substr($file, 0, -4);
+		my $command = "gpg --no-batch --passphrase $password --output $name --decrypt $file";
+		system($command);
+		#			exit(0);
+
+
 	}
-	my $string = substr($file, 0, -4);
-#	print($string);
-	my $result = "gpg -d --output $string $file";
-	system($result);
+	else {
+		print("Do poprawnego działania skrypt wymaga modulu Term::ReadKey a go nie wykryl. Prosze o zainstalowanie modulu Term::ReadKey\nNa przyklad komenda: cpan Term::ReadKey
+\n");
+		exit(0);
+	}
+#	my $string = substr($file, 0, -4);
+##	print($string);
+#	my $result = "gpg -d --output $string $file";
+#	system($result);
 }
 sub display_help
 {
@@ -132,8 +202,8 @@ sub display_help
 	print("\033[1;37;40m\n   b)Szuka frazy test wystepujacej w plikach w aktualnym katalogu:\n");
 	print("\033[1;31;40m\n       ./main.pl -c test\n");
 	print("\033[1;37;40m\n2. Wyswietla statystyki danego pliku. W statystykach pokazuje najczesciej wystepujace slowa uszeregowane malejaco w stosunku do ilosci wystapien. \n");
-	print("\033p1;37;40m W przypadku gdy plik znajduje sie w tym samym katalogu co skrypt wystarczy podac sama nazwe pliku. Jesli skrypt znajduje sie w innym katalogu niz plik to nalezy podac sciezke absolutna.");
-	print("\033p1;37;40m Skrypt w 1 lini wyswietla liczbe nadmiarowych bialych znakow(np. podwojna spacja, pusta linia). W kolejnych sa najczesciej wystepujace wyrazy wraz z licznikiem wystapien:");
+	print("\033[1;37;40m W przypadku gdy plik znajduje sie w tym samym katalogu co skrypt wystarczy podac sama nazwe pliku. Jesli skrypt znajduje sie w innym katalogu niz plik to nalezy podac sciezke absolutna.");
+	print("\033[1;37;40m Skrypt w 1 lini wyswietla liczbe nadmiarowych bialych znakow(np. podwojna spacja, pusta linia). W kolejnych sa najczesciej wystepujace wyrazy wraz z licznikiem wystapien:");
 	print("\033[1;31;40m\n    ./main.pl -s pelna_nazwa_pliku\n\n");
 	print("\033[1;37;40m\n3. Szyfruje plik podany jako argument wywolania skryptu(musi byc podana sciezka absolutna) stosujac 'gpg' czyli OpenPGP encryption and signing tool. Plik, ktory jest szyfrowany domyslnie zostaje jednak mozna go usunac po zaszyfrowaniu stosujac opcje -er:\n");
 	print("\033[1;31;40m\n    ./main.pl --encrypt/-e /home/bartek/Documents/file.txt\n");
