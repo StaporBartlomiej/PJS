@@ -87,7 +87,7 @@ function encrypt()
 	    echo "Password:"
 	    read -s pass
 	    wait
-	    gpg --no-batch --symmetric  --armor --passphrase $pass $2 &> /dev/null
+	    gpg --batch --symmetric  --armor --passphrase $pass $2 &> /dev/null
 #        gpg -c $2
 	    wait
 	    rm $2
@@ -99,7 +99,7 @@ function encrypt()
         echo "Password:"
 	    read -s pass
 	    wait
-	    gpg --no-batch --symmetric  --armor --passphrase $pass $2 &> /dev/null
+	    gpg --batch --symmetric  --armor --passphrase $pass $2 &> /dev/null
 #	    echo xD2
 #	    gpg -c $2
 	fi
@@ -115,7 +115,7 @@ function decrypt()
             echo "Password::"
             read -s pass
             wait
-            gpg --no-batch --passphrase $pass --output $name --decrypt $1 &> /dev/null
+            gpg --batch --passphrase $pass --output $name --decrypt $1 &> /dev/null
 #            echo "-d $1 --output $name"
 #            gpg -d --output $name $1
         else

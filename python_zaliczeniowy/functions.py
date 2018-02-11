@@ -81,7 +81,7 @@ def encrypt(option, file):
     # print("Podaj Haslo")
     password = getpass()
 
-    bashCommand = "gpg --no-batch --symmetric  --armor --passphrase " + password + " " + file
+    bashCommand = "gpg --batch --symmetric  --armor --passphrase " + password + " " + file
     # print("Command:" + bashCommand)
     # print("Starting bashcommand: " + bashCommand)
     if option == "-er":
@@ -104,7 +104,7 @@ def decrypt(file):
     #     print("gpg Installed")
     # print("file:" + file[:-4])
     password = getpass()
-    bashCommand = "gpg --no-batch --passphrase " + password + " --output " + file[:-4] + " --decrypt " + file
+    bashCommand = "gpg --batch --passphrase " + password + " --output " + file[:-4] + " --decrypt " + file
     # bashCommand = "gpg -d --output "+file[:-4]+" " + file
     # print("Command:" + bashCommand)
     # print("Starting bashcommand: " + bashCommand)

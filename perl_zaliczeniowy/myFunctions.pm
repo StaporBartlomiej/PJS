@@ -101,7 +101,7 @@ sub encrypt
 			chomp $password;
 			ReadMode 'normal';
 #			print($password);
-			my $command = "gpg --no-batch --symmetric  --armor --passphrase $password $file";
+			my $command = "gpg --batch --symmetric  --armor --passphrase $password $file";
 			system($command);
 #			exit(0);
 			my $rm = "rm $file";
@@ -131,7 +131,7 @@ sub encrypt
 			chomp $password;
 			ReadMode 'normal';
 			#			print($password);
-			my $command = "gpg --no-batch --symmetric  --armor --passphrase $password $file";
+			my $command = "gpg --batch --symmetric  --armor --passphrase $password $file";
 			system($command);
 			#			exit(0);
 
@@ -176,7 +176,7 @@ sub decrypt
 		ReadMode 'normal';
 		#			print($password);
 		my $name = substr($file, 0, -4);
-		my $command = "gpg --no-batch --passphrase $password --output $name --decrypt $file";
+		my $command = "gpg --batch --passphrase $password --output $name --decrypt $file";
 		system($command);
 		#			exit(0);
 
